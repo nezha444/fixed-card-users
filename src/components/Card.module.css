@@ -1,0 +1,20 @@
+ul {
+  display: flex;
+  max-width: 300px;
+  margin: 0;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.btnFollow {
+  background-color: green;
+}
+
+.btnFollowing {
+  background-color: red;
+}
+
+.btnFollowing:disabled {
+  opacity: 0.5;
+}
