@@ -11,6 +11,8 @@ export const CardsList = () => {
   const [followingUsers, setFollowingUsers] = useState(
     () => JSON.parse(localStorage.getItem("users")) || []
   );
+  // const [isFollowing, setIsFollowing] = useState(false);
+
   localStorage.setItem("users", JSON.stringify(followingUsers));
 
   const loadMore = () => {
