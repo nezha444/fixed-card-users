@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import css from "./Card.module.css";
-import { Card } from "./card";
-import { BtnLoadMore } from "./BtnLoadMore";
-import * as api from "../http/api";
+// import css from "./Card.module.css";
+import { Card } from "./Card";
+import { BtnLoadMore } from "../BtnLoadMore";
+import * as api from "../../http/api";
 
 export const CardsList = () => {
   const [users, setUsers] = useState([]);
@@ -11,10 +11,9 @@ export const CardsList = () => {
   const [followingUsers, setFollowingUsers] = useState(
     () => JSON.parse(localStorage.getItem("users")) || []
   );
-  // const [isFollowing, setIsFollowing] = useState(false);
+  console.log(users);
 
   localStorage.setItem("users", JSON.stringify(followingUsers));
-
   const loadMore = () => {
     api
       .usersApiGet(page + 1)
@@ -38,23 +37,25 @@ export const CardsList = () => {
       return followingUsers.some((el) => el.id === id);
     };
     if (hasDuplicates(followingUsers, id)) {
-      console.log("User already exists in followingUsers array.");
-      api.usersApiPutMinus(id, followers).then(() => {
-        setUsers(
-          users.map((el) => {
-            if (el.id === id) {
-              return { ...el, followers: followers - 1 };
-            }
-            return el;
-          })
-        );
-        setFollowingUsers(followingUsers.filter((el) => el.id !== id));
-      });
-      localStorage.setItem("users", JSON.stringify(followingUsers));
+      console.log("User -");
+      api
+        .usersApiPutMinus(id, followers)
+        .then(() => {
+          setUsers(
+            users.map((el) => {
+              if (el.id === id) {
+                return { ...el, followers: followers - 1 };
+              }
+              return el;
+            })
+          );
+          setFollowingUsers(followingUsers.filter((el) => el.id !== id));
+          localStorage.setItem("users", JSON.stringify(followingUsers));
+        })
+        .catch((e) => console.log(e));
     } else {
-      console.log("User added to followingUsers array.");
+      console.log("User +");
       // Сохранить отдельно подписанных пользователей
-
       api
         .usersApiPutPlus(id, followers)
         .then(() => {
@@ -69,21 +70,21 @@ export const CardsList = () => {
           setFollowingUsers((prev) =>
             prev.concat(users.find((el) => el.id === id))
           );
+          localStorage.setItem("users", JSON.stringify(followingUsers));
         })
         .catch((e) => console.log(e));
-      localStorage.setItem("users", JSON.stringify(followingUsers));
     }
   };
-
   // console.log(JSON.parse(localStorage.getItem("users")));
   return (
     <>
       <ul>
         {users.map((el) => (
           <Card
+            followingUsers={followingUsers}
             handleChangeFollower={handleChangeFollower}
             key={el.id}
-            el={el}
+            user={el}
           />
         ))}
       </ul>

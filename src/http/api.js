@@ -6,9 +6,17 @@ export const usersApiGet = async (page) => {
   const data = await axios.get("users", {
     params: {
       page: page,
-      limit: 4,
+      limit: 3,
     },
   });
+  return data;
+};
+export const userApiGet = async (id) => {
+  const data = await axios.get(`users/${id}`);
+  return data;
+};
+export const userTweetsApiGet = async (id) => {
+  const data = await axios.get(`users/${id}/tweets`);
   return data;
 };
 

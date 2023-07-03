@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Tweets } from "./pages/tweets";
+import { TweetsPage } from "./pages/tweets";
 import { Users } from "./pages/users";
 // import { Link } from "react-router-dom/dist";
 
@@ -8,7 +8,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Users />} />
-        <Route path="/tweets" element={<Tweets />} />
+        <Route path="/users/:userId/tweets" element={<TweetsPage />} />
 
         <Route path="*" element={<Navigate to={"/"} />} />
       </Routes>

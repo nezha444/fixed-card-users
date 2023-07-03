@@ -1,11 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Tweets } from "../components/Tweets/Tweets";
 
-export const Tweets = () => {
+export const TweetsPage = () => {
   return (
-    <div>
-      <Link to={"/"}>users</Link>
-      <p>TWEETS</p>
-    </div>
+    <>
+      <Tweets />
+    </>
   );
 };
