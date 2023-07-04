@@ -14,13 +14,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Montserrat", sans-serif;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap"); */
 
 a {
   font-weight: 500;
