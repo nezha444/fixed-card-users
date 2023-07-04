@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { TweetsPage } from "./pages/tweets";
+import { TweetsPage } from "./pages/Tweets";
 import { Users } from "./pages/users";
 // import { Link } from "react-router-dom/dist";
 
