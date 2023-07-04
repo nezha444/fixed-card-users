@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom/dist";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
-  <BrowserRouter>
+  <BrowserRouter basename="/fixed-card-users/">
     <App />
   </BrowserRouter>
   // {/* </React.StrictMode> */}
