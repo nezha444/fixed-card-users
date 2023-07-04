@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-// import css from "./Card.module.css";
+import css from "./Card.module.css";
 import { Card } from "./Card";
 import { BtnLoadMore } from "../BtnLoadMore";
 import * as api from "../../http/api";
+import Select from "react-select";
 
 export const CardsList = () => {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ export const CardsList = () => {
   const [followingUsers, setFollowingUsers] = useState(
     () => JSON.parse(localStorage.getItem("users")) || []
   );
-  console.log(users);
+  const [filterValue, setFilterValue] = useState("");
 
   localStorage.setItem("users", JSON.stringify(followingUsers));
   const loadMore = () => {
@@ -25,7 +26,7 @@ export const CardsList = () => {
       .catch((error) => console.log(error))
       .finally(setPage(page + 1));
   };
-  // console.log(users);
+
   useEffect(() => {
     loadMore();
   }, []);
@@ -75,11 +76,44 @@ export const CardsList = () => {
         .catch((e) => console.log(e));
     }
   };
-  // console.log(JSON.parse(localStorage.getItem("users")));
+
+  const options = [
+    { value: "all", label: "Show all" },
+    { value: "follow", label: "Follow" },
+    { value: "followings", label: "Followings" },
+  ];
+
+  const handleChangeSelect = (event) => {
+    setFilterValue(event.value);
+  };
+
+  const getFilteredUsers = () => {
+    if (filterValue === "follow") {
+      return users.filter((el) =>
+        followingUsers.find((user) => user.user === el.user) ? false : true
+      );
+    }
+    if (filterValue === "followings") {
+      return followingUsers;
+    }
+    return users;
+  };
+
   return (
-    <>
-      <ul>
-        {users.map((el) => (
+    <div className={css.contCardsListAndBtn}>
+      <Select
+        onChange={handleChangeSelect}
+        options={options}
+        styles={{
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+
+            width: "250px",
+          }),
+        }}
+      />
+      <ul className={css.cardsList}>
+        {getFilteredUsers().map((el) => (
           <Card
             followingUsers={followingUsers}
             handleChangeFollower={handleChangeFollower}
@@ -89,6 +123,6 @@ export const CardsList = () => {
         ))}
       </ul>
       <BtnLoadMore loadMore={loadMore} btnShown={btnShown} />
-    </>
+    </div>
   );
 };

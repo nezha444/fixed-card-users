@@ -17,8 +17,6 @@ export const Tweets = () => {
       .catch((e) => console.log(e));
   };
 
-  console.log(user);
-
   const getUser = (id) => {
     api
       .userApiGet(id)
@@ -42,8 +40,15 @@ export const Tweets = () => {
       <ul className={css.postsList}>
         {tweets?.map((el) => (
           <li key={el.id} className={css.postItem}>
-            <h3 className={css.userName}>{user.user}</h3>
-            <span>{el.post}</span>
+            <img
+              className={css.tweetUserAvatar}
+              src={user.avatar}
+              alt={user.user}
+            />
+            <div className={css.userNamePostItem}>
+              <h3 className={css.userName}>{user.user}</h3>
+              <span>{el.post}</span>
+            </div>
           </li>
         ))}
       </ul>

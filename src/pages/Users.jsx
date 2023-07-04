@@ -4,11 +4,5 @@ import { Link } from "react-router-dom";
 import { CardsList } from "../components/Card/CardsList";
 
 export const Users = () => {
-  return (
-    <div>
-      <Link to={"/tweets"}>tweets</Link>
-      <p>USERS</p>
-      <CardsList />
-    </div>
-  );
+  return <CardsList />;
 };

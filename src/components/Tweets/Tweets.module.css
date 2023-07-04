@@ -1,7 +1,27 @@
 .postItem {
+  display: flex;
+  /* align-items: center; */
   margin-bottom: 30px;
+  background-color: #b5b1b1b8;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .userName {
   margin-bottom: 20px;
+}
+
+.postsList {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  margin: auto;
+}
+
+.tweetUserAvatar {
+  margin-right: 30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 1000px;
+  border: 2px solid #fff;
 }
