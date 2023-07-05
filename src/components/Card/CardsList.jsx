@@ -31,14 +31,11 @@ export const CardsList = () => {
     loadMore();
   }, []);
 
-  // Функция на подписку
   const handleChangeFollower = (id, followers) => {
-    // Добавить в Api + 1 пользователя
     const hasDuplicates = (followingUsers, id) => {
       return followingUsers.some((el) => el.id === id);
     };
     if (hasDuplicates(followingUsers, id)) {
-      console.log("User -");
       api
         .usersApiPutMinus(id, followers)
         .then(() => {
@@ -55,8 +52,6 @@ export const CardsList = () => {
         })
         .catch((e) => console.log(e));
     } else {
-      console.log("User +");
-      // Сохранить отдельно подписанных пользователей
       api
         .usersApiPutPlus(id, followers)
         .then(() => {
