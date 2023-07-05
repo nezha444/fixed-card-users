@@ -36,7 +36,6 @@ export const Tweets = () => {
   return (
     <div>
       <Link to={location.state ?? "/"}>Go back</Link>
-      {/* <Link to={"/"}>users</Link> */}
       <ul className={css.postsList}>
         {tweets?.map((el) => (
           <li key={el.id} className={css.postItem}>

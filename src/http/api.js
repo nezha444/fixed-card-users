@@ -30,7 +30,3 @@ export const usersApiPutMinus = async (id, followers) => {
     followers: followers - 1,
   });
 };
-
-// usersApiPut()
-//   .then((el) => console.log(el))
-//   .catch((e) => console.log(e));

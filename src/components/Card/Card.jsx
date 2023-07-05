@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
 import css from "./Card.module.css";
 import imgMass from "../../img/picture-mass.png";
-import ellipse from "../../img/ellipse.png";
-// import { useEffect } from "react";
-// import logoOriginal from "../img/logoOriginal.svg";
 import svgLogo from "./svg";
-import Select from "react-select";
 
 export const Card = ({ user, handleChangeFollower, followingUsers }) => {
   const isFollow = followingUsers.some((el) => el.user === user.user);
