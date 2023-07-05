@@ -10,6 +10,9 @@ import Select from "react-select";
 export const Card = ({ user, handleChangeFollower, followingUsers }) => {
   const isFollow = followingUsers.some((el) => el.user === user.user);
 
+  const formatTweets = user.tweets.toLocaleString("en-US");
+  const formatFollowers = user.followers.toLocaleString("en-US");
+
   return (
     <>
       <li className={css.cardUser}>
@@ -21,8 +24,8 @@ export const Card = ({ user, handleChangeFollower, followingUsers }) => {
           </Link>
           <div className={css.line}></div>
         </div>
-        <p className={css.textTweets}>{user.tweets} tweets</p>
-        <p className={css.textFollowers}>{user.followers} followers</p>
+        <p className={css.textTweets}>{formatTweets} tweets</p>
+        <p className={css.textFollowers}>{formatFollowers} followers</p>
 
         <button
           className={`${isFollow ? css.follwing : css.follow} ${css.cardBtn}`}
